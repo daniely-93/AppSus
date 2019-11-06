@@ -7,7 +7,31 @@ export default {
 
 var inbox = [
     { id: 'Ab67Cgo9', from: 'daniel@email.com', subject: 'Wassap with Vue?', body: 'May I', isRead: false, sentAt: 1551133930594 },
-    { id: 'nsSF029x', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 }
+    { id: 'nsSF0291', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF029x', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF129x', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: false, sentAt: 1551133955660 },
+    { id: 'nsSF059x', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF029x', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSs029x', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: false, sentAt: 1551133955660 },
+    { id: 'nsSFss9x', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: false, sentAt: 1551133955660 },
+    { id: 'nsSFhh9x', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF02ax', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
 ];
 
 var sents = [
