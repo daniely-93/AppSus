@@ -8,18 +8,14 @@
     flex: 6;
 }
 
-.side-menu {
-    flex: 1;
-    border-right: 1px solid gray;
-}
-
 @media all and (max-width: 700px) {
     .mail-container {
         flex-direction: column;
     }
     .side-menu {
         order: 2;
-        background-color: #ccc;
+        background-color: #01638a;
+        background-image: none;
     }
     .side-menu-item{
         margin: auto 0;
@@ -36,7 +32,6 @@
     }
     .mail-item {
         flex-direction: column;
-        border: 1px solid green;
     }
     .date {
         position: absolute;

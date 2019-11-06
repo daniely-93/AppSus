@@ -1,3 +1,8 @@
+.side-menu {
+    flex: 1;
+    background-image: linear-gradient(to bottom, #051f3e, #043c60, #007199, #00a3c6, #12d8eb);
+}
+
 .side-menu-list {
     list-style: none;
     padding: 0;
@@ -7,7 +12,7 @@
 }
 
 .side-menu-item {
-    color: #666;
+    color: white;
     cursor: pointer;
     width: 100%;
     padding: 10px;
@@ -15,5 +20,5 @@
 }
 
 .side-menu-item:hover {
-    color: black;
+    color: gray;
 }
