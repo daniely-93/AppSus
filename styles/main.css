@@ -1,10 +1,14 @@
 @import './base.css';
+@import './helpers.css';
 @import './header.css';
-@import './components/mail-mail.css';
+@import './components/email-app/email-preview.css';
+@import './components/email-app/side-menu.css';
+@import './components/email-app/email-app.css';
 
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 
 .main{
     display: flex;
     flex-direction: column;
+    height: 100%;
 }

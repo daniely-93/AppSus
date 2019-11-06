@@ -1,5 +1,5 @@
 import Home from './pages/home.cmp.js'
-import MainMail from './apps/email/pages/main.cmp.js'
+import emailApp from './apps/email/pages/email-app.cmp.js'
 
 
 const routes = [
@@ -11,7 +11,7 @@ const routes = [
     {
         path: '/mail',
         name: 'Main',
-        component: MainMail
+        component: emailApp
     }
 ]
 

@@ -1,0 +1,45 @@
+.mail-container {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+}
+
+.mail-list-container {
+    flex: 6;
+}
+
+.side-menu {
+    flex: 1;
+    border-right: 1px solid gray;
+}
+
+@media all and (max-width: 700px) {
+    .mail-container {
+        flex-direction: column;
+    }
+    .side-menu {
+        order: 2;
+        background-color: #ccc;
+    }
+    .side-menu-item{
+        margin: auto 0;
+    }
+    .side-menu-list {
+        flex-direction: row;
+        display: flex;
+    }
+    .mail-list-container {
+        flex: 11;
+    }
+    .title {
+        display: none;
+    }
+    .mail-item {
+        flex-direction: column;
+        border: 1px solid green;
+    }
+    .date {
+        position: absolute;
+        right: 0;
+    }
+}

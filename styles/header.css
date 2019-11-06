@@ -59,6 +59,7 @@
 }
 
 .menu {
+    z-index: 1;
     position: absolute;
     width: 250px;
     height: 30%;

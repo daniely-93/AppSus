@@ -1,0 +1,29 @@
+.mail-item {
+    display: flex;
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.mail-item:hover{
+    background-color: rgba(0,0,0,0.1);
+}
+
+.mail-item-info {
+    margin: 5px;
+}
+
+.from {
+    flex: 2;
+}
+
+.subject {
+    flex: 3;
+}
+
+.body {
+    flex: 5;
+}
+
+.time{
+    flex: 2;
+}
