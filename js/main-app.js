@@ -5,8 +5,9 @@ new Vue({
     router,
     el: '#root',
     template: `
-    <main>
+    <main class="main">
         <Header/>
+        <router-view></router-view>
     </main>`,
     components:{
         Header

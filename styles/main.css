@@ -1,1 +1,10 @@
 @import './base.css';
+@import './header.css';
+@import './components/mail-mail.css';
+
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.main{
+    display: flex;
+    flex-direction: column;
+}
