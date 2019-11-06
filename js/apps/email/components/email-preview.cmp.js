@@ -1,7 +1,7 @@
 export default {
     props: ['mail'],
     template: `
-    <div v-if="mail" class="mail-item" @click="openDetails" :class="{bold : mail.isRead}">
+    <div v-if="mail" class="mail-item" @click="openDetails" :class="{bold : !mail.isRead}">
         <p class="mail-item-info from">{{senderName}}</p>
         <p class="mail-item-info subject">{{mail.subject}}</p>
         <p class="mail-item-info body">{{mail.body}}</p>
