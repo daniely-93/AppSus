@@ -1,17 +1,24 @@
 import utilService from '../../../services/utils-service.js';
 
 export default {
-    getMails,
-    addMail
+    addMail,
+    getDir
 }
 
-var mails = [
-    { id:'Ab67Cgo9' , from: 'Daniel', subject: 'Wassap with Vue?', body: 'May I', isRead: false, sentAt: 1551133930594 },
-    { id:'nsSF029x', from: 'Benny', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 }
+var inbox = [
+    { id: 'Ab67Cgo9', from: 'daniel@email.com', subject: 'Wassap with Vue?', body: 'May I', isRead: false, sentAt: 1551133930594 },
+    { id: 'nsSF029x', from: 'benny@email.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 }
 ];
 
+var sents = [
+    { id: 'h2Js9bCa', to: 'benny@email.com', subject: 'Hello', body: 'Whats up?', sentAt: 1551133155101 }
+]
+
+var drafts = [];
+var trash = [];
+
 function addMail(from, subject, body, isRead, sentAt) {
-    mails.unshift({
+    inbox.unshift({
         id: utilService.getRandomId(),
         from,
         subject,
@@ -21,6 +28,6 @@ function addMail(from, subject, body, isRead, sentAt) {
     })
 }
 
-function getMails(){
-    return Promise.resolve(mails);
+function getDir(dir) {
+    return Promise.resolve(dir === 'inbox' ? inbox : dir === 'sents' ? sents : dir === 'drafts' ? drafts : dir === 'trash' ? trash : null);
 }

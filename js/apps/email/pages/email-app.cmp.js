@@ -6,18 +6,25 @@ export default {
     name: 'Main',
     template: `
     <div class="mail-container">
-        <sideMenu/>
-        <emailList :mails="mails"/>
+        <sideMenu @clicked="changeDir"/>
+        <emailList :mails="mails" :dir="dir"/>
     </div>
     `,
     data() {
         return {
-            mails : []
+            mails : [],
+            dir: 'inbox',
+            showForm: false
         }
     },
     methods : {
         loadMails(){
-            mailService.getMails().then(res => this.mails = res);
+           mailService.getDir(this.dir).then(mails => this.mails = mails)
+            .catch(err => console.log(err))
+        },
+        changeDir(dir){
+            this.dir = dir;
+            this.loadMails();
         }
     },
     created() {
