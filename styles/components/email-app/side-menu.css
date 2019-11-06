@@ -27,5 +27,5 @@
 }
 
 .active {
-    border-right: 6px solid rgb(180, 180, 180);
+    border-left: 4px solid rgb(180, 180, 180);
 }
