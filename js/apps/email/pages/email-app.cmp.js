@@ -54,8 +54,7 @@ export default {
     },
     methods: {
         loadMails() {
-            mailService.getDir(this.dir).then(mails => this.mails = mails)
-                .catch(err => console.log(err))
+            mailService.getDir(this.dir).then(mails => this.mails = mails).catch(err => console.log(err))
         },
         resetFormData() {
             this.formInput = {
