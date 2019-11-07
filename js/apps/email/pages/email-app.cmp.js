@@ -7,7 +7,7 @@ export default {
     template: `
     <div class="mail-container">
         <sideMenu @clicked="changeDir" @toggleForm="toggleForm"/>
-        <emailList :mails="mails" :dir="dir"/>
+        <router-view :mails="mails"></router-view>
         <div v-if="showForm" class="form-send">
             <div class="form-title">
                 <h3>New Message</h3>
@@ -52,47 +52,47 @@ export default {
             }
         }
     },
-    methods: {
-        loadMails() {
-            mailService.getDir(this.dir).then(mails => this.mails = mails)
-                .catch(err => console.log(err))
-        },
-        resetFormData() {
-            this.formInput = {
-                to: '',
-                cc: '',
-                bcc: '',
-                subject: '',
-                body: ''
-            };
-            this.toggleForm();
-        },
-        changeDir(dir) {
-            this.dir = dir;
-            this.loadMails();
-        },
-        toggleForm() {
-            this.showForm = !this.showForm;
-        },
-        sendMail() {
-            if (!this.formInput.to || this.formInput.to.indexOf('@') < 3) return;
-            this.formInput.sentAt = Date.now();
-            mailService.sendMail(this.formInput).then(mail => {
-                if (mail) this.resetFormData();
-            })
-        },
-        saveMail() {
-            mailService.saveMail(this.formInput);
-        },
+    loadMails() {
+        mailService.getDir(this.dir).then(mails => this.mails = mails)
+            .catch(err => console.log(err))
     },
-    created() {
+    resetFormData() {
+        this.formInput = {
+            to: '',
+            cc: '',
+            bcc: '',
+            subject: '',
+            body: ''
+        };
+        this.toggleForm();
+    },
+    changeDir(dir) {
+        this.dir = dir;
         this.loadMails();
+        this.$router.push('/mail');
     },
-    components: {
-        sideMenu,
+    toggleForm() {
+        this.showForm = !this.showForm;
+    },
+    sendMail() {
+        if (!this.formInput.to || this.formInput.to.indexOf('@') < 3) return;
+        this.formInput.sentAt = Date.now();
+        mailService.sendMail(this.formInput).then(mail => {
+            if (mail) this.resetFormData();
+        })
+    },
+    saveMail() {
+        mailService.saveMail(this.formInput);
+    },
+},
+created() {
+    this.loadMails();
+},
+components: {
+    sideMenu,
         emailList
-    },
-    watch: {
-        'formInput': () => console.log('asd')
-    }
+},
+watch: {
+    'formInput': () => console.log('asd')
+}
 }

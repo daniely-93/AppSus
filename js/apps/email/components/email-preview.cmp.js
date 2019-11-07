@@ -1,9 +1,11 @@
+import utilService from '../../../services/utils-service.js';
+
 export default {
     props: ['mail'],
     template: `
     <div class="mail-item-container" @click="toggleDetails">
         <div class="mail-item-mobile" :class="{'bg-lightgray' : showDetails }">
-            <div class="mail-item-pic"><p>{{firstChar}}</p></div>
+            <div class="mail-item-pic" :style="{'background-color' : randomColor}"><p>{{firstChar}}</p></div>
             <div v-if="mail" class="mail-item" :class="{bold : !mail.isRead}">
                 <p class="mail-item-info from">{{senderName}}</p>
                 <p class="mail-item-info subject">{{mail.subject}}</p>
@@ -14,9 +16,9 @@ export default {
         <div v-if="showDetails" class="mail-preview">
         <div class="mail-preview-top">
             <h2>{{mail.subject}}</h2>
-            <div class="mail-review-buttons">
-                <button class="mail-preview-button"><i class="fa fa-trash"></i></button>
-                <router-link :to="'/mail/' + mail.id" class="mail-preview-button"><i class="fa fa-expand"></i></router-link>
+            <div class="action-buttons">
+                <button><i class="fa fa-trash"></i></button>
+                <router-link :to="'/mail/' + mail.id"><i class="fa fa-expand"></i></router-link>
             </div>
         </div>
         <div class="mail-preview-content">
@@ -53,6 +55,9 @@ export default {
         firstChar() {
             return this.mail.from ? this.mail.from.charAt(0) :
                 this.mail.to.charAt(0);
+        },
+        randomColor(){
+            return utilService.getRandomColor();
         }
     }
 }

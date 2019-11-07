@@ -5,7 +5,7 @@
 }
 
 .mail-list-container {
-    flex: 6;
+    flex: 1;
 }
 
 .mail-list {
@@ -80,6 +80,7 @@
         background-image: none;
         position: sticky;
         bottom: 0;
+        flex-basis: 0;
     }
     .side-menu-item {
         margin: auto 0;
@@ -125,7 +126,14 @@
     .mail-item-pic {
         display: block;
     }
-    .from, .subject, .body, .time {
+    .from, .subject, .body, .date    {
         flex: 1;
+    }
+    .body{
+        color: gray;
+    }
+    .date   {
+        color: blue;
+        font-size: 0.8rem;
     }
 }

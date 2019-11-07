@@ -1,8 +1,9 @@
 .header {
     display: flex;
-    background-image: linear-gradient(to right top, #051937, #044268, #007199, #00a3c6, #12d8eb);
+    background-image: linear-gradient(to right, #051937, #044268, #007199, #00a3c6, #12d8eb);
     width: 100%;
     color: white;
+    border-bottom: 1px solid white;
     justify-content: space-between;
 }
 

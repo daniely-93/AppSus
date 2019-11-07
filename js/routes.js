@@ -1,6 +1,7 @@
 import home from './pages/home.cmp.js'
 import emailApp from './apps/email/pages/email-app.cmp.js'
 import mailDetails from './apps/email/pages/email-details.cmp.js';
+import mailList from './apps/email/components/email-list.cmp.js'
 
 
 const routes = [
@@ -12,13 +13,21 @@ const routes = [
     {
         path: '/mail',
         name: 'Main',
-        component: emailApp
+        component: emailApp,
+        children: [
+            {
+                path: '/',
+                name: 'MailList',
+                component: mailList
+            },
+            {
+                path: ':id',
+                name: 'MailDetails',
+                component: mailDetails
+            }
+        ]
+
     },
-    {
-        path: '/mail/:id',
-        name: 'MailDetails',
-        component: mailDetails
-    }
 ]
 
 const router = new VueRouter({ routes })

@@ -3,13 +3,14 @@ import utilService from '../../../services/utils-service.js';
 export default {
     sendMail,
     getDir,
-    saveMail
+    saveMail,
+    getInboxMailById
 }
 
 var inbox = [
     { id: 'Ab67Cgo9', from: 'daniel@email.com', to:'daniel@daniel.com', subject: 'Wassap with Vue?', body: 'May I', isRead: false, sentAt: 1551133930594 },
     { id: 'nsSF0291', from: 'benny@email.com', to:'daniel@daniel.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
-    { id: 'nsSF029x', from: 'benny@email.com', to:'daniel@daniel.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
+    { id: 'nsSF929x', from: 'benny@email.com', to:'daniel@daniel.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
     { id: 'nsSF129x', from: 'benny@email.com', to:'daniel@daniel.com', subject: 'Hello', body: 'Whats up?', isRead: false, sentAt: 1551133955660 },
     { id: 'nsSF059x', from: 'benny@email.com', to:'daniel@daniel.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
     { id: 'nsSF029x', from: 'benny@email.com', to:'daniel@daniel.com', subject: 'Hello', body: 'Whats up?', isRead: true, sentAt: 1551133955660 },
@@ -41,6 +42,10 @@ var sents = [
 
 var drafts = [];
 var trash = [];
+
+function getInboxMailById(id){
+    return Promise.resolve(inbox.find(mail => mail.id = id))
+}
 
 function sendMail(mail) {
     let id = utilService.getRandomId();

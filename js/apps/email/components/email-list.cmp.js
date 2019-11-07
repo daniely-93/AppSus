@@ -11,7 +11,7 @@ export default {
             <p class="mail-item-info time">Time</p>
         </div>
         <div class="mail-list">
-            <mailPreview v-for="mail in mails" :mail="mail" />
+            <mailPreview v-for="mail in mails" :mail="mail" :key="mail.id"/>
         </div>
     </div>`,
     methods: {

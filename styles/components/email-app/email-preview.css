@@ -10,7 +10,7 @@
     width: 100%;
 }
 
-.mail-item-container:hover {
+.mail-item-mobile:hover {
     background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -72,17 +72,16 @@
 }
 
 .mail-item-pic {
-    background-color: red;
     border-radius: 50%;
     color: white;
     padding: 10px;
     display: none;
     margin: auto 10px;
-    width: 100px;
-    height: 100px;
+    width: 75px;
+    height: 75px;
 }
 
 .mail-item-pic p {
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.1rem;
 }
