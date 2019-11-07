@@ -52,47 +52,48 @@ export default {
             }
         }
     },
-    loadMails() {
-        mailService.getDir(this.dir).then(mails => this.mails = mails)
-            .catch(err => console.log(err))
+    methods: {
+        loadMails() {
+            mailService.getDir(this.dir).then(mails => this.mails = mails)
+                .catch(err => console.log(err))
+        },
+        resetFormData() {
+            this.formInput = {
+                to: '',
+                cc: '',
+                bcc: '',
+                subject: '',
+                body: ''
+            };
+            this.toggleForm();
+        },
+        changeDir(dir) {
+            this.dir = dir;
+            this.loadMails();
+            this.$router.push('/mail');
+        },
+        toggleForm() {
+            this.showForm = !this.showForm;
+        },
+        sendMail() {
+            if (!this.formInput.to || this.formInput.to.indexOf('@') < 3) return;
+            this.formInput.sentAt = Date.now();
+            mailService.sendMail(this.formInput).then(mail => {
+                if (mail) this.resetFormData();
+            })
+        },
+        saveMail() {
+            mailService.saveMail(this.formInput);
+        },
     },
-    resetFormData() {
-        this.formInput = {
-            to: '',
-            cc: '',
-            bcc: '',
-            subject: '',
-            body: ''
-        };
-        this.toggleForm();
-    },
-    changeDir(dir) {
-        this.dir = dir;
+    created() {
         this.loadMails();
-        this.$router.push('/mail');
     },
-    toggleForm() {
-        this.showForm = !this.showForm;
-    },
-    sendMail() {
-        if (!this.formInput.to || this.formInput.to.indexOf('@') < 3) return;
-        this.formInput.sentAt = Date.now();
-        mailService.sendMail(this.formInput).then(mail => {
-            if (mail) this.resetFormData();
-        })
-    },
-    saveMail() {
-        mailService.saveMail(this.formInput);
-    },
-},
-created() {
-    this.loadMails();
-},
-components: {
-    sideMenu,
+    components: {
+        sideMenu,
         emailList
-},
-watch: {
-    'formInput': () => console.log('asd')
-}
+    },
+    watch: {
+        'formInput': () => console.log('asd')
+    }
 }
