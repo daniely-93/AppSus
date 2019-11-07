@@ -24,7 +24,8 @@ const routes = [
             {
                 path: ':id',
                 name: 'MailDetails',
-                component: mailDetails
+                component: mailDetails,
+                props: {}
             }
         ]
 

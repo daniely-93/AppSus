@@ -1,4 +1,5 @@
 import utilService from '../../../services/utils-service.js';
+import { eventBus } from './../../../services/eventbus-service.js';
 
 export default {
     props: ['mail'],
@@ -13,11 +14,12 @@ export default {
                 <p class="mail-item-info date">{{timeAsDate}}</p>
             </div>
         </div>
-        <div v-if="showDetails" class="mail-preview">
+        <div v-if="showDetails" class="mail-preview" @click.stop.prevent="">
         <div class="mail-preview-top">
             <h2>{{mail.subject}}</h2>
             <div class="action-buttons">
-                <button><i class="fa fa-trash"></i></button>
+                <button v-if="mail.deletedFrom" @click="recoverMail"><i class="fa fa-undo"></i></button>
+                <button @click="deleteMail"><i class="fa fa-trash"></i></button>
                 <router-link :to="'/mail/' + mail.id"><i class="fa fa-expand"></i></router-link>
             </div>
         </div>
@@ -35,6 +37,12 @@ export default {
     methods: {
         toggleDetails() {
             this.showDetails = !this.showDetails;
+        },
+        deleteMail(){
+            eventBus.$emit('deleteMail', this.mail.id);
+        },
+        recoverMail(){
+            eventBus.$emit('recoverMail', this.mail.id);
         }
     },
     computed: {

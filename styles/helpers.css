@@ -38,6 +38,10 @@
     background-color: #ececec;
 }
 
+.bg-gray{
+    background-color: #bbbbbb;
+}
+
 .action-buttons button, .action-buttons a {
     border: none;
     color: #444;

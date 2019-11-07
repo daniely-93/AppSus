@@ -1,6 +1,7 @@
 .side-menu {
     flex-basis: 190px;
     background-image: linear-gradient(to bottom, #051f3e, #043c60, #007199, #00a3c6, #12d8eb);
+    border-right: 1px solid white;
 }
 
 .btn-compose {
