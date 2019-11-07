@@ -1,17 +1,29 @@
+.mail-item-container {
+    border-bottom: 1px solid lightgray;
+}
+
 .mail-item {
     display: flex;
     cursor: pointer;
     transition: all .2s;
-    border-bottom: 1px solid lightgray;
     padding: 10px;
+    width: 100%;
 }
 
-.mail-item:hover{
-    background-color: rgba(0,0,0,0.1);
+.mail-item-container:hover {
+    background-color: rgba(0, 0, 0, 0.1);
 }
 
 .mail-item-info {
     margin: 5px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.mail-item-mobile{
+    display: flex;
+    flex-direction: row;
 }
 
 .from {
@@ -26,6 +38,51 @@
     flex: 5;
 }
 
-.time{
+.time {
     flex: 2;
+}
+
+.mail-preview {
+    padding: 15px;
+}
+
+.mail-preview-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.mail-preview-body {
+    padding: 15px;
+}
+
+.mail-preview-button {
+    border: none;
+    color: #444;
+    font-size: 1.3rem;
+    outline: none;
+    background-color: #bbb;
+    border-radius: 50%;
+    padding: 15px;
+    cursor: pointer;
+    transition: all .1s;
+}
+
+.mail-preview-button:hover {
+    color: black;
+}
+
+.mail-item-pic {
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+    padding: 10px;
+    display: none;
+    margin: auto 10px;
+    width: 100px;
+    height: 100px;
+}
+
+.mail-item-pic p {
+    text-align: center;
+    font-size: 1.5rem;
 }

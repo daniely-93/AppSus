@@ -33,3 +33,7 @@
 .button:hover{
     background-color: darkgreen;
 }
+
+.bg-lightgray{
+    background-color: #ececec;
+}

@@ -6,6 +6,11 @@
     justify-content: space-between;
 }
 
+.logo{
+    margin: auto 0;
+    padding: 20px;
+}
+
 .nav-menu {
     padding: 13px;
 }

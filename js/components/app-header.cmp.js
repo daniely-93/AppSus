@@ -1,7 +1,7 @@
 export default {
     template: `
     <header class="header">
-        <h1>AppSus</h1>
+        <h1 class="logo">AppSus</h1>
         <nav class="nav-container">
             <div class="nav-menu">
                 <button class="menu-select-btn" @click="toggleMenu"><i class="fa fa-ellipsis-h"></i><i class="fa fa-ellipsis-h"></i><i class="fa fa-ellipsis-h"></i></button>

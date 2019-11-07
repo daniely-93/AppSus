@@ -4,7 +4,7 @@ export default {
     props: ['mails', 'dir'],
     template: `
     <div class="mail-list-container">
-        <div class="mail-item title">
+        <div class="mail-item title bg-lightgray">
             <p class="mail-item-info from">{{directory}}</p>
             <p class="mail-item-info subject">Subject</p>
             <p class="mail-item-info body">Content</p>
