@@ -26,6 +26,12 @@
     color:black;
 }
 
+.yt-iframe{
+    width: 100%;
+    border: none;
+    height: 215px;
+}
+
 .fa-youtube{
     color: red;
 }

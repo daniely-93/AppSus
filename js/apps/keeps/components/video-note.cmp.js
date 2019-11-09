@@ -2,7 +2,7 @@ export default {
     props: ['info'],
     template: `
     <div>
-        <iframe width="220" height="220" :src="this.url"></iframe>
+        <iframe class="yt-iframe" :src="this.url"></iframe>
         <div class="note-bottom">
             <p class="note-type-icon"><i class="fab fa-youtube"></i></p>
             <div class="note-buttons">
