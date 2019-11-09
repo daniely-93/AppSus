@@ -1,7 +1,17 @@
+import { eventBus } from '../services/eventbus-service.js';
+
 export default {
     template: `
     <header class="header">
         <h1 class="logo">AppSus</h1>
+        <div class="search-container">
+            <input @input="search" class="search-input" type="text" placeholder="Search...">
+            <select @change="filter" class="filter-select">
+                <option value="all">All</option>
+                <option value="true">Read</option>
+                <option value="false">Unread</option>
+            </select>
+        </div>
         <nav class="nav-container">
             <div class="nav-menu">
                 <button class="menu-select-btn" @click="toggleMenu"><i class="fa fa-ellipsis-h"></i><i class="fa fa-ellipsis-h"></i><i class="fa fa-ellipsis-h"></i></button>
@@ -15,14 +25,20 @@ export default {
             </div>
         </nav>
     </header>`,
-    data(){
+    data() {
         return {
-            showMenu: false
+            showMenu: false,
         }
     },
     methods: {
-        toggleMenu(){
+        toggleMenu() {
             this.showMenu = !this.showMenu;
+        },
+        search(e) {
+            eventBus.$emit('search', e.target.value);
+        },
+        filter(e){
+            eventBus.$emit('filter', e.target.value);
         }
     },
 }

@@ -1,4 +1,5 @@
 export default {
+    props: ['mailTemplate'],
     template:
         `<div class="form-send">
         <div class="form-title">
@@ -49,8 +50,13 @@ export default {
                 body: ''
             };
         },
-        sendMail(){
+        sendMail() {
             this.$emit('sendMail', this.formInput);
+        }
+    },
+    created() {
+        if (this.mailTemplate) {
+            this.formInput = this.mailTemplate;
         }
     }
 }

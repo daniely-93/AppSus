@@ -1,39 +1,52 @@
 import mailService from '../services/mail-service.js';
+import { eventBus } from '../../../services/eventbus-service.js';
 
 export default {
     name: 'MailDetails',
-    template : `
+    template: `
     <div v-if="mail" class="mail-list-container">
-        <div class="mail-details bg-lightgray">
+        <div class="mail-details bg-lightgray p15">
             <div class="mail-details-address">
                 <p><span class="bold">{{senderName}}</span> <{{fullSenderName}}></p>
                 <p>to me</p>
             </div>
             <p>{{timeAsDate}}</p>
         </div>
-        <div class="mail-details-content">
+        <div class="mail-details-content p15">
+            <h2>{{mail.subject}}</h2>
             <p>{{mail.body}}</p>
         </div>
-        <div class="action-buttons">
-            <button>+</button>
-            <button>+</button>
-            <button>+</button>
+        <div class="action-buttons p15">
+            <button @click="sendEmit('deleteMail')"><i class="fa fa-trash"></i></button>
+            <button @click="reply('reply')"><i class="fa fa-reply"></i></button>
+            <button @click="reply('forward')"><i class="fa fa-arrow-right"></i></button>
+            <button v-if="mail.deletedFrom" @click="sendEmit('recoverMail')"><i class="fa fa-undo"></i></button>
         </div>
     </div>`,
-    data(){
+    data() {
         return {
             mail: null
         }
     },
     created() {
         this.loadMail();
-        
     },
-    methods :{
-        loadMail(){
+    methods: {
+        loadMail() {
             const mailId = this.$route.params.id;
-            mailService.getInboxMailById(mailId).then(mail => this.mail = mail);
-        }
+            mailService.getMailById(mailId).then(mail => this.mail = mail);
+        },
+        reply(type) {
+            let copyMail = { ...this.mail }
+            copyMail.to = copyMail.from;
+            if (type === 'forward') copyMail.to = null;
+            copyMail.subject = (type === 'forward' ? 'Fw: ' : 'Re: ') + copyMail.subject;
+            copyMail.body = `\n\n\n${copyMail.from} Said on ${this.timeAsDate}:\n"${copyMail.body}"`
+            eventBus.$emit('replyMail', copyMail);
+        },
+        sendEmit(emit){
+            eventBus.$emit(emit, this.mail.id);
+        },
     },
     computed: {
         timeAsDate() {
@@ -54,11 +67,11 @@ export default {
             return this.mail.from ? this.mail.from.charAt(0) :
                 this.mail.to.charAt(0);
         },
-        randomColor(){
+        randomColor() {
             return utilService.getRandomColor();
         }
     },
-    watch:{
+    watch: {
         '$route.params.id'() {
             this.loadMail();
         }

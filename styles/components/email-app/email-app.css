@@ -6,6 +6,8 @@
 
 .mail-list-container {
     flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .mail-list {
@@ -99,7 +101,7 @@
         flex: 11;
     }
     .mail-list {
-        height: calc(100vh - 198px);
+        height: calc(100vh - 197px);
     }
     .title {
         display: none;
@@ -127,13 +129,13 @@
     .mail-item-pic {
         display: block;
     }
-    .from, .subject, .body, .date    {
+    .from, .subject, .body, .date {
         flex: 1;
     }
-    .body{
+    .body {
         color: gray;
     }
-    .date   {
+    .date {
         color: blue;
         font-size: 0.8rem;
     }

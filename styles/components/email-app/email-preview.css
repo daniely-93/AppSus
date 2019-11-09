@@ -21,7 +21,7 @@
     text-overflow: ellipsis;
 }
 
-.mail-item-mobile{
+.mail-item-mobile {
     display: flex;
     flex-direction: row;
 }
@@ -44,6 +44,7 @@
 
 .mail-preview {
     padding: 15px;
+    word-break: break-all
 }
 
 .mail-preview-top {
@@ -84,4 +85,38 @@
 .mail-item-pic p {
     text-align: center;
     font-size: 1.1rem;
+}
+
+.opts-menu {
+    display: flex;
+    flex-direction: column;
+    border-radius: 3px;
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.75);
+    flex-basis: 275px
+}
+
+.opts-menu-item {
+    padding: 12px;
+    outline: none;
+    border: none;
+    text-align: left;
+    cursor: pointer;
+    color: #444;
+}
+
+.opts-menu-item:hover {
+    background: #ececec;
+}
+
+.mail-preview-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.star {
+    color: lightgray;
+}
+
+.starred {
+    color: gold;
 }

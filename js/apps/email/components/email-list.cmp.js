@@ -10,8 +10,8 @@ export default {
             <p class="mail-item-info body">Content</p>
             <p class="mail-item-info time">Time</p>
         </div>
-        <div class="mail-list">
-            <mailPreview v-for="mail in mails" :mail="mail" :key="mail.id" />
+        <div class="mail-list" v-if="mails">
+            <mail-preview v-for="mail in mails" :mail="mail"></mail-preview>
         </div>
     </div>`,
     computed: {

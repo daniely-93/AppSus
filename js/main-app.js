@@ -1,4 +1,4 @@
-import Header from './components/app-header.cmp.js'
+import mainHeader from './components/app-header.cmp.js'
 import router from './routes.js';
 
 new Vue({
@@ -6,11 +6,11 @@ new Vue({
     el: '#root',
     template: `
     <main class="main">
-        <Header/>
+        <main-header></main-header>
         <router-view></router-view>
     </main>`,
     components:{
-        Header
+        mainHeader
     }
 })
 
