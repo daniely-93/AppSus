@@ -8,12 +8,13 @@ export default {
         <div class="mail-item-mobile" :class="{'bg-lightgray' : showDetails, bold : !mail.isRead}">
             <div class="mail-item-pic" :style="{'background-color' : randomColor}"><p>{{firstChar}}</p></div>
             <div v-if="mail" class="mail-item">
-                <p class="mail-item-info from"><span @click.stop="sendEmit('toggleStar')" class="star" :class="{ starred : mail.isStarred }"><i class="fa fa-star"></i></span> {{senderName}}</p>
+                <p class="mail-item-info from"><span @click.stop="toggleStar" class="star" :class="{ starred : mail.isStarred }"><i class="fa fa-star"></i></span> {{senderName}}</p>
                 <p class="mail-item-info subject">{{mail.subject}}</p>
                 <p class="mail-item-info body">{{messageBody}}</p>
                 <p class="mail-item-info date">{{timeAsDate}}</p>
             </div>
         </div>
+        <transition name="bounce">
         <div v-if="showDetails" class="mail-preview" @click.stop.prevent="">
             <div class="mail-preview-top">
                 <h2>{{mail.subject}}</h2>
@@ -35,12 +36,13 @@ export default {
                         <button class="opts-menu-item" @click="reply('reply')"><i class="fa fa-reply"></i> Reply</button>
                         <button class="opts-menu-item" @click="mark(true)"><i class="fa fa-envelope-open"></i> Mark as Read</button>
                         <button class="opts-menu-item" @click="mark(false)"><i class="fa fa-envelope"></i> Mark as Unread</button>
-                        <button class="opts-menu-item" @click="sendEmit('toggleStar'); toggleOptions()"><i class="fa fa-star"></i> Star</button>
+                        <button class="opts-menu-item" @click="toggleStar; toggleOptions()"><i class="fa fa-star"></i> Star</button>
                         <button class="opts-menu-item"><i class="fa fa-thumbtack"></i> Pin</button>
                     </div>
                 </transition>
             </div>
         </div>
+        </transition>
     </div>`,
     data() {
         return {
@@ -55,6 +57,9 @@ export default {
         },
         toggleOptions() {
             this.showMoreOpts = !this.showMoreOpts;
+        },
+        toggleStar(){
+            this.mail.isStarred = !this.mail.isStarred;
         },
         sendEmit(emit) {
             eventBus.$emit(emit, this.mail.id);

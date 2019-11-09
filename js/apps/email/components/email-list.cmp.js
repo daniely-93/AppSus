@@ -11,9 +11,9 @@ export default {
             <p class="mail-item-info body">Content</p>
             <p class="mail-item-info time">Time</p>
         </div>
-        <transition-group v-if="mails" name="fade" tag="div" class="mail-list">
-            <mail-preview v-for="mail in mails" :key="mail.id + randomId" :mail="mail"></mail-preview>
-        </transition-group >
+        <transition-group name="fade" tag="div" class="mail-list">
+            <mail-preview v-for="mail in mails" :key="mail.id + randomId" :mail="mail" v-if="mail"></mail-preview>
+        </transition-group>
     </div>`,
     computed: {
         directory() {
