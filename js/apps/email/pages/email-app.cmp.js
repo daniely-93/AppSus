@@ -10,7 +10,9 @@ export default {
     <div class="mail-container">
         <side-menu @clicked="changeDir" @toggleForm="toggleForm" :unread="unreadMails"></side-menu>
         <router-view :mails="filteredMails.length ? filteredMails : mails"></router-view>
-        <email-compose v-if="showForm" @sendMail="sendMail" :mailTemplate="mailTemplate"></email-compose>
+        <transition name="fade">
+            <email-compose v-if="showForm" @sendMail="sendMail" :mailTemplate="mailTemplate"></email-compose>
+        </transition>
     </div>
     `,
     data() {
@@ -99,7 +101,7 @@ export default {
     },
     computed: {
         unreadMails() {
-            if(!this.mails) return 0;
+            if (!this.mails) return 0;
             return this.filter('false').length;
         }
     },

@@ -7,11 +7,15 @@
     font-weight: bold;
 }
 
-.done{
+.mail-list-container .bold {
+    background-color: #efefef;
+}
+
+.done {
     text-decoration-line: line-through;
 }
 
-.hide{
+.hide {
     display: none;
 }
 
@@ -44,7 +48,7 @@
     background-color: #ececec;
 }
 
-.bg-gray{
+.bg-gray {
     background-color: #bbbbbb;
 }
 
@@ -64,6 +68,6 @@
     margin: 2px;
 }
 
-.p15{
+.p15 {
     padding: 15;
 }

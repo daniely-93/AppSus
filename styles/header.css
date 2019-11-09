@@ -37,17 +37,16 @@
 .menu-list {
     width: 100%;
     padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    align-items: flex-start;
+    align-content: flex-start;
 }
 
 .menu-btn {
-    border: none;
-    display: inline-block;
-    font-size: 1.5rem;
-    margin: 10px 0;
-    cursor: pointer;
-    background: none;
-    width: 93px;
-    margin: 10px;
+    margin: 15px 0;
+    flex: 0 0 50%;
 }
 
 .menu-btn a {
@@ -59,15 +58,17 @@
 }
 
 .menu-btn:hover a {
-    color: rgb(117, 0, 128);
+    color: rgb(0, 39, 102);
 }
 
 .menu {
+    border-radius: 10px;
     z-index: 1;
     position: absolute;
     width: 250px;
     height: 30%;
-    right: 10px;
+    top: 70px;
+    right: 15px;
     padding: 10px;
     display: flex;
     background-color: white;
@@ -98,7 +99,7 @@
         border-bottom: none;
     }
     .search-input {
-        padding: 0;
+        padding: 5px;
     }
     .logo{
         padding: 0 10px;

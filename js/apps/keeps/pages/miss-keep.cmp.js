@@ -12,7 +12,7 @@ export default {
             </div>
             <div class="other-notes">
                 <h2>Other Notes</h2>
-                <note-list :notes="notes"/>
+                <note-list v-if="notes" :notes="notes"/>
             </div>
         </div>
     </div>
