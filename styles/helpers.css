@@ -7,6 +7,14 @@
     font-weight: bold;
 }
 
+.done{
+    text-decoration-line: line-through;
+}
+
+.hide{
+    display: none;
+}
+
 .btn-trash {
     background: none;
     border: none;
