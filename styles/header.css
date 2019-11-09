@@ -17,8 +17,6 @@
 }
 
 .menu-select-btn {
-    outline: none;
-    border: none;
     color: white;
     background: none;
     font-size: 2rem;
@@ -78,6 +76,7 @@
 
 .search-container {
     display: flex;
+    width: 40%;
     margin: 18px 0;
 }
 

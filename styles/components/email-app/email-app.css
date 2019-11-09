@@ -31,6 +31,26 @@
     flex: 1;
     background-color: #333;
     color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.form-title>h3 {
+    margin: 0;
+    padding: 10px;
+}
+
+.btn-close {
+    border: none;
+    font-size: 1rem;
+    color: white;
+    background: none;
+    padding: 14px;
+    cursor: pointer;
+}
+
+.btn-close:hover {
+    color: gray;
 }
 
 .form-content {
@@ -62,14 +82,19 @@
     outline: none;
 }
 
-.form-title {
-    padding: 0 10px;
-}
-
 .form-buttons {
     padding: 10px;
     display: flex;
     justify-content: space-between;
+}
+
+.btn-search {
+    background-color: #1a73e8;
+    transition: all .2s;
+}
+
+.btn-search:hover {
+    background-color: #2160b3;
 }
 
 @media all and (max-width: 700px) {

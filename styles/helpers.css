@@ -11,7 +11,7 @@
     background: none;
     border: none;
     color: gray;
-    font-size: 2rem;
+    font-size: 1.7rem;
     transition: all .2s;
     cursor: pointer;
 }
@@ -21,13 +21,11 @@
 }
 
 .button {
-    border: none;
     padding: 10px;
     color: white;
     background-color: green;
     cursor: pointer;
     transition: all .1s;
-    outline: none;
 }
 
 .button:hover {

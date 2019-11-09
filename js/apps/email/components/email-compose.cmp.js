@@ -1,9 +1,12 @@
+import { eventBus } from '../../../services/eventbus-service.js';
+
 export default {
     props: ['mailTemplate'],
     template:
         `<div class="form-send">
         <div class="form-title">
             <h3>New Message</h3>
+            <button class="btn-close" @click="toggleCompose">X</button>
         </div>
         <div class="form-content">
             <div class="input-group">
@@ -25,8 +28,8 @@ export default {
             <textarea type="text" v-model="formInput.body" />
         </div>
         <div class="form-buttons">
-            <button class="button" @click="sendMail">Send</button>
-            <button class="btn-trash" @click="resetFormData"><i class="fa fa-trash" aria-hidden="true"></i></button>
+            <button class="button btn-search" @click="sendMail"><i class="fa fa-paper-plane"></i> Send</button>
+            <button class="btn-trash" @click="resetFormData"><i class="fa fa-trash"></i></button>
         </div>
     </div>`,
     data() {
@@ -49,9 +52,13 @@ export default {
                 subject: '',
                 body: ''
             };
+            this.toggleCompose();
         },
         sendMail() {
             this.$emit('sendMail', this.formInput);
+        },
+        toggleCompose(){
+            eventBus.$emit('toggleCompose');
         }
     },
     created() {

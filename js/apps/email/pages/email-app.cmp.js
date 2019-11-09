@@ -93,6 +93,9 @@ export default {
                 this.filteredMails.push(null)
             }
         });
+        eventBus.$on('toggleCompose', () => {
+            this.toggleForm();
+        })
     },
     computed: {
         unreadMails() {

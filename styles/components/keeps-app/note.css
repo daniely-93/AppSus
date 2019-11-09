@@ -1,0 +1,47 @@
+.note-type-icon {
+    color: gray;
+    font-size: 1.6rem;
+    margin: 10px 0;
+}
+
+.note-bottom {
+    display: flex;
+    justify-content: space-between;
+}
+
+.note-buttons {
+    margin: auto 0;
+}
+
+.note-buttons>button {
+    border: 0;
+    background: none;
+    cursor: pointer;
+    color: rgb(102, 102, 102);
+    font-size: 1.3rem;
+    transition: all .15s;
+}
+
+.note-buttons>button:hover{
+    color:black;
+}
+
+.fa-youtube{
+    color: red;
+}
+
+.fa-volume-up{
+    color: royalblue;
+}
+
+.fa-font{
+    color: gray;
+}
+
+.fa-image{
+    color: black;
+}
+
+.fa-list{
+    color: green;
+}

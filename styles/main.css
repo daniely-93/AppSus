@@ -5,6 +5,9 @@
 @import './components/email-app/side-menu.css';
 @import './components/email-app/email-details.css';
 @import './components/email-app/email-app.css';
+@import './components/keeps-app/add-note.css';
+@import './components/keeps-app/note.css';
+@import './components/keeps-app/keeps-app.css';
 
 @import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
 

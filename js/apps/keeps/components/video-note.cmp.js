@@ -1,10 +1,19 @@
 export default {
     props: ['info'],
     template: `
-    <div class="note-cmp video-cmp">
-        <iframe width="220" height="220" :src="this.url">
-        </iframe>
-        <div class="type"><i class="fa fa-youtube"></i></div>
+    <div>
+        <iframe width="220" height="220" :src="this.url"></iframe>
+        <div class="note-bottom">
+            <p class="note-type-icon"><i class="fab fa-youtube"></i></p>
+            <div class="note-buttons">
+                <button><i class="fa fa-thumbtack"></i></button>
+                <button><i class="fa fa-check"></i></button>
+                <button><i class="fa fa-palette"></i></button>
+                <button><i class="fa fa-edit"></i></button>
+                <button><i class="fa fa-copy"></i></button>
+                <button><i class="fa fa-trash"></i></button>
+            </div>
+        </div>
     </div>
     `,
     data() {

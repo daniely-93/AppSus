@@ -34,7 +34,7 @@ export default {
                     <button class="opts-menu-item" @click="mark(true)"><i class="fa fa-envelope-open"></i> Mark as Read</button>
                     <button class="opts-menu-item" @click="mark(false)"><i class="fa fa-envelope"></i> Mark as Unread</button>
                     <button class="opts-menu-item" @click="sendEmit('toggleStar'); toggleOptions()"><i class="fa fa-star"></i> Star</button>
-                    <button class="opts-menu-item"><i class="fa fa-map-pin"></i> Pin</button>
+                    <button class="opts-menu-item"><i class="fa fa-thumbtack"></i> Pin</button>
                 </div>
             </div>
         </div>

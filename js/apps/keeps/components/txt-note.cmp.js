@@ -1,9 +1,19 @@
 export default{
     props:['info'],
     template:`
-    <div class="note-cmp txt-cmp">
-        <div class="txt">{{info}}</div>
-        <div class="type"><i class="fa fa-font"></i></div>
+    <div>
+        <h3 class="txt">{{info}}</h3>
+        <div class="note-bottom">
+            <p class="note-type-icon"><i class="fa fa-font"></i></p>
+            <div class="note-buttons">
+                <button><i class="fa fa-thumbtack"></i></button>
+                <button><i class="fa fa-check"></i></button>
+                <button><i class="fa fa-palette"></i></button>
+                <button><i class="fa fa-edit"></i></button>
+                <button><i class="fa fa-copy"></i></button>
+                <button><i class="fa fa-trash"></i></button>
+            </div>
+        </div>
     </div>
     `
 }

@@ -7,10 +7,8 @@ import noteVideo from '../components/video-note.cmp.js'
 export default{
     props:['notes'],
     template:`
-    <div v-if="notes" class="saved-notes">
-       <h1 v-for="note in notes" :key="note.id">
-           <component :is="note.type" :info="note.data"></component>
-       </h1>
+    <div v-if="notes" class="notes">
+        <component v-for="note in notes" :style="{background: note.color}" :key="note.id" :is="note.type" :info="note.data" class="note"></component>
     </div>
     `,
     data(){

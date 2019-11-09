@@ -1,0 +1,28 @@
+.notes-maker {
+    display: flex;
+    text-align: center;
+    flex-direction: row;
+    background: white;
+    margin: 20px auto;
+}
+
+.btn-notes {
+    display: flex;
+    padding: 10px;
+}
+
+.btn-note-type {
+    border: none;
+    font-size: 1.3rem;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.active {
+    box-shadow: inset 0px 0px 0px 1px rgb(175, 175, 175)
+}
+
+.url-txt {
+    outline: none;
+    border: none;
+}
