@@ -100,7 +100,10 @@
     .search-input {
         padding: 0;
     }
-    .filter-select {
-        width: 80px;
+    .logo{
+        padding: 0 10px;
+    }
+    .search-container{
+        width: 100%;
     }
 }
