@@ -36,7 +36,7 @@ function addNote(type, data) {
 function _createNote(type, data) {
     return {
         id: utilService.getRandomId(),
-        color: utilService.getRandomColor(),
+        color: utilService.getRandomColor(true),
         type,
         data
     }
