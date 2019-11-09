@@ -162,5 +162,12 @@
     .date {
         color: blue;
         font-size: 0.8rem;
+        display: inline !important;
+    }
+    .on-hover-menu {
+        display: none;
+    }
+    .mail-item-info {
+        white-space: normal;
     }
 }

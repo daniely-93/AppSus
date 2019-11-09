@@ -5,13 +5,21 @@ export default {
     props: ['mail'],
     template: `
     <div v-if="mail" class="mail-item-container" @click="toggleDetails">
-        <div class="mail-item-mobile" :class="{'bg-lightgray' : showDetails, bold : !mail.isRead}">
+        <div class="mail-item-mobile" :class="{'bg-lightgray' : showDetails, bold : !mail.isRead}" @mouseover="showHoverDelete = true" @mouseleave="showHoverDelete = false">
             <div class="mail-item-pic" :style="{'background-color' : randomColor}"><p>{{firstChar}}</p></div>
             <div v-if="mail" class="mail-item">
                 <p class="mail-item-info from"><span @click.stop="toggleStar" class="star" :class="{ starred : mail.isStarred }"><i class="fa fa-star"></i></span> {{senderName}}</p>
                 <p class="mail-item-info subject">{{mail.subject}}</p>
                 <p class="mail-item-info body">{{messageBody}}</p>
-                <p class="mail-item-info date">{{timeAsDate}}</p>
+                <p class="mail-item-info date" v-show="!showHoverDelete || showDetails">{{timeAsDate}}</p>
+                <div class="on-hover-menu" v-show="showHoverDelete && !showDetails">
+                    <button class="btn-menu-hover" @click.stop="reply('reply')"><i class="fa fa-reply"></i></button>
+                    <button class="btn-menu-hover" @click.stop="mark(true, false)"><i class="fa fa-envelope-open"></i></button>
+                    <button class="btn-menu-hover" @click.stop="mark(false, false)"><i class="fa fa-envelope"></i></button>
+                    <button class="btn-menu-hover"><i class="fa fa-thumbtack"></i></button>
+                    <button class="btn-menu-hover" @click.stop.stop="sendEmit('deleteMail'); toggleDetails()"><i class="fa fa-trash"></i></button>
+                    <button class="btn-menu-hover" v-if="mail.deletedFrom" @click.stop.stop="sendEmit('recoverMail')"><i class="fa fa-undo"></i></button>
+                </div>
             </div>
         </div>
         <transition name="bounce">
@@ -48,6 +56,7 @@ export default {
         return {
             showDetails: false,
             showMoreOpts: false,
+            showHoverDelete: false
         }
     },
     methods: {
@@ -58,7 +67,7 @@ export default {
         toggleOptions() {
             this.showMoreOpts = !this.showMoreOpts;
         },
-        toggleStar(){
+        toggleStar() {
             this.mail.isStarred = !this.mail.isStarred;
         },
         sendEmit(emit) {
@@ -73,10 +82,11 @@ export default {
             eventBus.$emit('replyMail', copyMail);
             this.toggleOptions();
         },
-        mark(isRead) {
-            if (!isRead) this.toggleDetails();
+        mark(isRead, toggle = true) {
+            if (!isRead && toggle) this.toggleDetails();
             this.mail.isRead = isRead;
-            this.toggleOptions();
+
+            if (toggle) this.toggleOptions();
         },
     },
     computed: {
@@ -88,7 +98,7 @@ export default {
                 this.mail.to.substring(0, this.mail.to.indexOf('@'));
         },
         messageBody() {
-            return this.mail.body.length > 30 ? this.mail.body.substring(0, 30) + '...': this.mail.body;
+            return this.mail.body.length > 75 ? this.mail.body.substring(0, 75) + '...' : this.mail.body;
         },
         fullSenderName() {
             return this.mail.from ? this.mail.from :

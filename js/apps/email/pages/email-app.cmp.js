@@ -9,7 +9,7 @@ export default {
     template: `
     <div class="mail-container">
         <side-menu @clicked="changeDir" @toggleForm="toggleForm" :unread="unreadMails"></side-menu>
-        <router-view :mails="filteredMails.length ? filteredMails : mails"></router-view>
+        <router-view :mails="filteredMails.length ? filteredMails : mails" :dir="dir"></router-view>
         <transition name="fade">
             <email-compose v-if="showForm" @sendMail="sendMail" :mailTemplate="mailTemplate"></email-compose>
         </transition>
