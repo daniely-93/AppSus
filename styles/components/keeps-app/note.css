@@ -22,32 +22,59 @@
     transition: all .15s;
 }
 
-.note-buttons>button:hover{
-    color:black;
+.note-buttons>button:hover {
+    color: black;
 }
 
-.yt-iframe{
+.yt-iframe {
     width: 100%;
     border: none;
     height: 215px;
 }
 
-.fa-youtube{
+.fa-youtube {
     color: red;
 }
 
-.fa-volume-up{
+.fa-volume-up {
     color: royalblue;
 }
 
-.fa-font{
+.fa-font {
     color: gray;
 }
 
-.fa-image{
+.fa-image {
     color: black;
 }
 
-.fa-list{
+.fa-list {
     color: green;
+}
+
+.color-picker {
+    position: absolute;
+    display: flex;
+}
+
+.btn-color {
+    border-radius: 50%;
+    cursor: pointer;
+    height: 25px;
+    width: 25px;
+}
+
+.btn-color:hover {
+    transform: scale(1.1);
+}
+
+.btn-more-colors {
+    background-image: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+}
+
+.pinned {
+    position: absolute;
+    color: red;
+    top: -25px;
+    transform: rotate(-20deg);
 }

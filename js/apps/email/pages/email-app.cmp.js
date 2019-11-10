@@ -7,9 +7,9 @@ import { eventBus } from './../../../services/eventbus-service.js';
 export default {
     name: 'Main',
     template: `
-    <div class="mail-container">
+    <div class="mail-container" v-if="mails">
         <side-menu @clicked="changeDir" @toggleForm="toggleForm" :unread="unreadMails"></side-menu>
-        <router-view :mails="filteredMails.length ? filteredMails : mails" :dir="dir"></router-view>
+        <router-view :mails="filteredMails" :dir="dir"></router-view>
         <transition name="fade">
             <email-compose v-if="showForm" @sendMail="sendMail" :mailTemplate="mailTemplate"></email-compose>
         </transition>
@@ -19,6 +19,8 @@ export default {
         return {
             mails: [],
             filteredMails: [],
+            searchStr: '',
+            filterStr: 'all',
             dir: 'inbox',
             showForm: false,
             mailTemplate: null
@@ -26,12 +28,14 @@ export default {
     },
     methods: {
         loadMails() {
-            mailService.getDir(this.dir).then(mails => this.mails = mails).catch(err => console.log(err))
+            mailService.getDir(this.dir).then(mails => {
+                this.mails = mails;
+                this.filteredMails = mails;
+            }).catch(err => console.log(err))
         },
         changeDir(dir) {
             this.dir = dir;
             this.loadMails();
-
             this.$router.history.current.path === '/mail' ? this.$router.push : this.$router.push('/mail');
         },
         toggleForm() {
@@ -42,7 +46,6 @@ export default {
             formInput.sentAt = Date.now();
             mailService.sendMail(formInput).then(mail => {
                 if (mail) this.toggleForm();
-                
                 const msg = {
                     txt: `Email successfully sent.`,
                     type: 'success',
@@ -52,19 +55,6 @@ export default {
         },
         saveMail() {
             mailService.saveMail(this.formInput);
-        },
-        search(str) {
-            if (!str) return [];
-            return this.mails.filter(mail => {
-                return mail.subject.toLowerCase().includes(str.toLowerCase()) ||
-                    mail.to.toLowerCase().includes(str.toLowerCase()) ||
-                    mail.from.toLowerCase().includes(str.toLowerCase()) ||
-                    mail.body.toLowerCase().includes(str.toLowerCase())
-            })
-        },
-        filter(value) {
-            if (value === 'all') return this.mails;
-            return this.mails.filter(mail => String(mail.isRead) === value)
         }
     },
     created() {
@@ -96,14 +86,12 @@ export default {
             this.toggleForm();
         });
         eventBus.$on('search', str => {
-            this.filteredMails = this.search(str);
-            if (str && !this.filteredMails.length) this.filteredMails.push(null)
+            this.searchStr = str;
+            this.filteredMails = this.searchedMails;
         });
         eventBus.$on('filter', filterBy => {
-            this.filteredMails = this.filter(filterBy);
-            if (filterBy !== 'all' && !this.filteredMails.length) {
-                this.filteredMails.push(null)
-            }
+            this.filterStr = filterBy;
+            this.filteredMails = this.searchedMails;
         });
         eventBus.$on('toggleCompose', () => {
             this.toggleForm();
@@ -119,8 +107,19 @@ export default {
     },
     computed: {
         unreadMails() {
-            if (!this.mails) return 0;
-            return this.filter('false').length;
+            if(!this.mails.length) return 0;
+            return this.mails.filter(mail => !mail.isRead).length
+        },
+        searchedMails() {
+            if (!this.searchStr && this.filter === 'all') return this.mails;
+            const search = this.searchStr.toLowerCase();
+            let currMails = this.mails.filter(mail => {
+                return mail.subject.toLowerCase().includes(search) ||
+                    mail.to.toLowerCase().includes(search) ||
+                    mail.from.toLowerCase().includes(search) ||
+                    mail.body.toLowerCase().includes(search)
+            })
+            return this.filterStr !== 'all' ? currMails.filter(mail => String(mail.isRead) === this.filterStr) : currMails;
         },
     },
     components: {

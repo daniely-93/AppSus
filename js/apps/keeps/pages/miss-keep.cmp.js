@@ -5,31 +5,12 @@ import noteList from '../components/note-list.cmp.js';
 export default {
     template: `
     <div class="container">
-        <add-note @getAllNotes="getAllNotes"/>
+        <add-note />
         <div class="notes-container">
-            <div class="pinned-notes">
-                <h2>Pinned Notes</h2>
-            </div>
-            <div class="other-notes">
-                <h2>Other Notes</h2>
-                <note-list v-if="notes" :notes="notes"/>
-            </div>
+            <note-list />
         </div>
     </div>
     `,
-    data() {
-        return {
-            notes: []
-        }
-    },
-    methods: {
-        getAllNotes() {
-            this.notes = noteService.getNotes();
-        }
-    },
-    created() {
-        this.getAllNotes()
-    },
     components: {
         addNote,
         noteList

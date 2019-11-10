@@ -3,17 +3,42 @@ import noteImage from '../components/img-note.cmp.js'
 import noteVideo from '../components/video-note.cmp.js'
 import noteTodo from '../components/todo-note.cmp.js'
 // import noteSound from '../components/sound-note.cmp.js'
+import keepService from '../services/notes-service.js';
+import { eventBus } from '../../../services/eventbus-service.js';
 
 export default {
-    props: ['notes'],
     template: `
-    <transition-group name="fade" tag="div" class="notes">
-        <component v-for="note in notes" :style="{background: note.color}" :key="note.id" :is="note.type" :info="note.data" class="note"></component>
-    </transition-group>
+        <transition-group tag="div" name="fade" class="notes">
+            <div class="note" v-for="note in notes" :key="note.id" :style="{background: note.color}">
+                <p class="pinned" v-if="note.isPinned"><i class="fa fa-thumbtack"></i></p>
+                <component @togglePin="togglePin" @delete="deleteNote" @changeColor="updateNote" v-if="note" :is="note.type" :note="note"></component>
+            </div>
+       </transition-group>
     `,
     data() {
         return {
-
+            notes: [],
+        }
+    },
+    methods: {
+        getNotes() {
+            this.notes = keepService.getNotes();
+        },
+        copy(data) {
+            document.execCommand('copy');
+        },
+        togglePin(note) {
+            keepService.togglePin(note).then(() => {
+                this.getNotes();
+            })
+        },
+        deleteNote(id){
+            keepService.deleteNote(id).then(() => this.getNotes())
+        },
+        updateNote(id, key, value){
+            keepService.updateNote(id, key, value).then(()=>{
+                
+            })
         }
     },
     components: {
@@ -21,5 +46,13 @@ export default {
         noteImage,
         noteVideo,
         noteTodo
+    },
+    created() {
+        this.getNotes();
+        eventBus.$on('addNote', (type, data) => {
+            keepService.addNote(type, data).then(() => {
+                this.getNotes();
+            }).catch(err => console.log(err))
+        });
     }
 }
