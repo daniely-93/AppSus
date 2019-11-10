@@ -16,7 +16,7 @@ export default {
                     <button class="btn-menu-hover" @click.stop="reply('reply')"><i class="fa fa-reply"></i></button>
                     <button class="btn-menu-hover" @click.stop="mark(true, false)"><i class="fa fa-envelope-open"></i></button>
                     <button class="btn-menu-hover" @click.stop="mark(false, false)"><i class="fa fa-envelope"></i></button>
-                    <button class="btn-menu-hover" @click.stop="pinMail(mail)"><i class="fa fa-thumbtack"></i></button>
+                    <button class="btn-menu-hover"><i class="fa fa-thumbtack"></i></button>
                     <button class="btn-menu-hover" @click.stop.stop="sendEmit('deleteMail'); toggleDetails()"><i class="fa fa-trash"></i></button>
                     <button class="btn-menu-hover" v-if="mail.deletedFrom" @click.stop.stop="sendEmit('recoverMail')"><i class="fa fa-undo"></i></button>
                 </div>
@@ -45,7 +45,7 @@ export default {
                         <button class="opts-menu-item" @click="mark(true)"><i class="fa fa-envelope-open"></i> Mark as Read</button>
                         <button class="opts-menu-item" @click="mark(false)"><i class="fa fa-envelope"></i> Mark as Unread</button>
                         <button class="opts-menu-item" @click="toggleStar; toggleOptions()"><i class="fa fa-star"></i> Star</button>
-                        <button class="opts-menu-item" @click="pinMail(mail)"><i class="fa fa-thumbtack"></i> Pin</button>
+                        <button class="opts-menu-item"><i class="fa fa-thumbtack"></i> Pin</button>
                     </div>
                 </transition>
             </div>
@@ -72,9 +72,6 @@ export default {
         },
         sendEmit(emit) {
             eventBus.$emit(emit, this.mail.id);
-        },
-        pinMail(mail) {
-            eventBus.$emit('pinMail', mail)
         },
         reply(type) {
             let copyMail = { ...this.mail }

@@ -31,10 +31,5 @@ export default {
             if (!this.txt) return;
             eventBus.$emit('addNote', this.type, this.txt);
         }
-    },
-    created() {
-        eventBus.$on('pinMail', mail => {
-            console.log('addNote', mail)
-        })
     }
 }
