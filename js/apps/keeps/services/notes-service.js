@@ -46,3 +46,4 @@ function clearNotes() {
     notes = [];
     _saveNotes();
 }
+

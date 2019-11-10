@@ -11,6 +11,10 @@
     text-decoration-line: line-through;
 }
 
+.delete-todo{
+    cursor: pointer;
+}
+
 .hide{
     display: none;
 }
