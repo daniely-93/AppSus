@@ -1,0 +1,57 @@
+.success {
+    background-color: green;
+}
+
+.error {
+    background: red;
+}
+
+.danger {
+    background-color: red;
+}
+
+.danger:hover {
+    background-color: darkred;
+}
+
+.user-msg {
+    position: absolute;
+    left: 50%;
+    bottom: 5%;
+    width: 40%;
+}
+
+.msg-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: 0 15px;
+    left: -50%;
+    color: white;
+    border-radius: 10px;
+}
+
+.msg-text {
+    display: flex;
+    justify-content: space-between;
+}
+
+.close-btn {
+    border: none;
+    cursor: pointer;
+    color: white;
+    background: none;
+    font-size: 1.3rem;
+    transition: all .3s;
+}
+
+.close-btn:hover {
+    color: black;
+}
+
+@media all and (max-width: 700px) {
+    .user-msg {
+        top: 10%;
+        width: 60%; 
+    }
+}

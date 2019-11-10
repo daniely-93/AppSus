@@ -34,7 +34,7 @@ export default {
                 </div>
             </div>
             <div class="mail-preview-content">
-                <div>
+                <div class="mail-content">
                     <p><span class="bold">{{senderName}}</span>  <{{fullSenderName}}></p>
                     <p class="mail-preview-body">{{mail.body}}</p>
                 </div>

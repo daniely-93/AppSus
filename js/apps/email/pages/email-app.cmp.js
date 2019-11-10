@@ -29,7 +29,7 @@ export default {
             mailService.getDir(this.dir).then(mails => this.mails = mails).catch(err => console.log(err))
         },
         changeDir(dir) {
-            this.dir = dir; 
+            this.dir = dir;
             this.loadMails();
 
             this.$router.history.current.path === '/mail' ? this.$router.push : this.$router.push('/mail');
@@ -42,6 +42,12 @@ export default {
             formInput.sentAt = Date.now();
             mailService.sendMail(formInput).then(mail => {
                 if (mail) this.toggleForm();
+                
+                const msg = {
+                    txt: `Email successfully sent.`,
+                    type: 'success',
+                }
+                eventBus.$emit('show-msg', msg);
             })
         },
         saveMail() {
@@ -66,11 +72,22 @@ export default {
         eventBus.$on('deleteMail', id => {
             mailService.deleteMail(this.dir, id).then(() => {
                 this.$router.history.current.path === '/mail' ? this.$router.push : this.$router.push('/mail');
+
+                const msg = {
+                    txt: `Email successfully deleted.`,
+                    type: 'success'
+                }
+                eventBus.$emit('show-msg', msg);
             })
         });
         eventBus.$on('recoverMail', id => {
             mailService.recoverMail(id).then(() => {
                 this.changeDir('trash');
+                const msg = {
+                    txt: `Email successfully restored.`,
+                    type: 'success',
+                }
+                eventBus.$emit('show-msg', msg);
             })
         });
         eventBus.$on('replyMail', mail => {
@@ -93,6 +110,11 @@ export default {
         });
         eventBus.$on('toggleStar', id => {
             mailService.toggleStar(id).then(() => console.log('starred'))
+            const msg = {
+                txt: `Email successfully starred.`,
+                type: 'success',
+            }
+            eventBus.$emit('show-msg', msg);
         })
     },
     computed: {

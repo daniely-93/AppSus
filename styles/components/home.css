@@ -4,14 +4,16 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 }
 
 .homepage img {
     width: 80%;
+    margin: 0 auto;
 }
 
 .nav-buttons {
-    display:flex;
+    display: flex;
     justify-content: space-evenly;
 }
 
