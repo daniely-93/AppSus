@@ -7,9 +7,9 @@ export default {
     getMailById,
     deleteMail,
     recoverMail,
+    toggleStar
 }
 
-var inbox = _createInbox();
 
 var sent = [
     { id: 'h2Js9bCa', to: 'benny@email.com', from: 'daniel@daniel.com', subject: 'Hello', body: 'Whats up?', isRead: true, isStarred: false, sentAt: 1551133155101 }
@@ -17,11 +17,16 @@ var sent = [
 
 var drafts = [];
 var trash = [];
-// var starred = [];
+var starred = [];
+var inbox = _createInbox();
 
 function _createInbox() {
     let inbox = []
-    for (let i = 0; i < 25; i++) inbox.push(_createMail());
+    for (let i = 0; i < 25; i++) {
+        let currMail = _createMail();
+        inbox.push(currMail);
+        if(currMail.isStarred) starred.push(currMail);
+    }
     return inbox;
 }
 
@@ -34,22 +39,22 @@ function getMailById(id) {
     })
 }
 
-// function toggleStar(id) {
-//     return new Promise(resolve => {
-//         let mail = inbox.find(mail => mail.id === id)
-//         if (!mail) mail = sent.find(mail => mail.id === id)
-//         if (!mail) mail = trash.find(mail => mail.id === id)
-//         if (mail.isStarred) {
-//             let starredIdx = starred.findIndex(resMail => resMail.id === mail.id);
-//             mail.isStarred = false;
-//             starred.splice(starred[starredIdx], 1);
-//             return;
-//         }
-//         if (mail.deletedFrom) return;
-//         mail.isStarred = true;
-//         resolve(starred.unshift(mail));
-//     })
-// }
+function toggleStar(id) {
+    return new Promise(resolve => {
+        let mail = inbox.find(mail => mail.id === id)
+        if (!mail) mail = sent.find(mail => mail.id === id)
+        if (!mail) mail = trash.find(mail => mail.id === id)
+        if (mail.isStarred) {
+            let starredIdx = starred.findIndex(resMail => resMail.id === mail.id);
+            mail.isStarred = false;
+            starred.splice(starred[starredIdx], 1);
+            return;
+        }
+        if (mail.deletedFrom) return;
+        mail.isStarred = true;
+        resolve(starred.unshift(mail));
+    })
+}
 
 function deleteMail(dir, id) {
     return getDir(dir).then(arr => {

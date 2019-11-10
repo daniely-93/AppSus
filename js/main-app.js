@@ -7,7 +7,9 @@ new Vue({
     template: `
     <main class="main">
         <main-header></main-header>
-        <router-view></router-view>
+        <transition name="slide-fade">
+            <router-view></router-view>
+        </transition>
     </main>`,
     components:{
         mainHeader

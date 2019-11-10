@@ -29,14 +29,10 @@ export default {
             mailService.getDir(this.dir).then(mails => this.mails = mails).catch(err => console.log(err))
         },
         changeDir(dir) {
-            this.dir = dir;
-            if(dir === 'starred'){
-                this.mails = this.starredMails;
-            }else{
+            this.dir = dir; 
+            this.loadMails();
 
-                this.loadMails();
-            }
-            this.$router.history.current.path === '/mail' ?  this.$router.push : this.$router.push('/mail');
+            this.$router.history.current.path === '/mail' ? this.$router.push : this.$router.push('/mail');
         },
         toggleForm() {
             this.showForm = !this.showForm;
@@ -69,7 +65,7 @@ export default {
         this.loadMails();
         eventBus.$on('deleteMail', id => {
             mailService.deleteMail(this.dir, id).then(() => {
-                this.$router.history.current.path === '/mail' ?  this.$router.push : this.$router.push('/mail');
+                this.$router.history.current.path === '/mail' ? this.$router.push : this.$router.push('/mail');
             })
         });
         eventBus.$on('recoverMail', id => {
@@ -94,6 +90,9 @@ export default {
         });
         eventBus.$on('toggleCompose', () => {
             this.toggleForm();
+        });
+        eventBus.$on('toggleStar', id => {
+            mailService.toggleStar(id).then(() => console.log('starred'))
         })
     },
     computed: {
@@ -101,9 +100,6 @@ export default {
             if (!this.mails) return 0;
             return this.filter('false').length;
         },
-        starredMails(){
-            return this.mails.filter(mail => mail.isStarred)
-        }
     },
     components: {
         sideMenu,

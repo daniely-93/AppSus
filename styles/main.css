@@ -2,6 +2,7 @@
 @import './helpers.css';
 @import './animations.css';
 @import './header.css';
+@import './components/home.css';
 @import './components/email-app/email-preview.css';
 @import './components/email-app/side-menu.css';
 @import './components/email-app/email-details.css';
