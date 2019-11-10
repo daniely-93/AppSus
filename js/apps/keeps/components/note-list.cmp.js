@@ -8,7 +8,7 @@ import { eventBus } from '../../../services/eventbus-service.js';
 
 export default {
     template: `
-        <transition-group tag="div" name="fade" class="notes">
+        <transition-group tag="div" name="flip-list" class="notes">
             <div class="note" v-for="note in notes" :key="note.id" :style="{background: note.color}">
                 <p class="pinned" v-if="note.isPinned"><i class="fa fa-thumbtack"></i></p>
                 <component @togglePin="togglePin" @delete="deleteNote" @changeColor="updateNote" v-if="note" :is="note.type" :note="note"></component>
@@ -29,15 +29,15 @@ export default {
         },
         togglePin(note) {
             keepService.togglePin(note).then(() => {
-                this.getNotes();
+                _.shuffle(this.getNotes());
             })
         },
-        deleteNote(id){
+        deleteNote(id) {
             keepService.deleteNote(id).then(() => this.getNotes())
         },
-        updateNote(id, key, value){
-            keepService.updateNote(id, key, value).then(()=>{
-                
+        updateNote(id, key, value) {
+            keepService.updateNote(id, key, value).then(() => {
+
             })
         }
     },
@@ -51,7 +51,7 @@ export default {
         this.getNotes();
         eventBus.$on('addNote', (type, data) => {
             keepService.addNote(type, data).then(() => {
-                this.getNotes();
+                _.shuffle(this.getNotes());
             }).catch(err => console.log(err))
         });
     }

@@ -38,3 +38,7 @@
         transform: scale(1);
     }
 }
+
+.flip-list-move {
+    transition: transform 1s;
+}
