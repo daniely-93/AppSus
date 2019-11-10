@@ -8,8 +8,13 @@
 }
 
 .logo {
-    margin: auto 0;
-    padding: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.logo:hover{
+    color: rgb(122, 122, 122);
 }
 
 .nav-menu {
@@ -21,6 +26,7 @@
     background: none;
     font-size: 2rem;
     cursor: pointer;
+    float: right;
     transition: all .3s;
     display: flex;
     flex-direction: column;
@@ -32,6 +38,10 @@
 
 .menu-select-btn:hover {
     color: rgb(122, 122, 122);
+}
+
+.nav-container {
+    width: 110px;
 }
 
 .menu-list {
@@ -77,8 +87,8 @@
 
 .search-container {
     display: flex;
-    width: 40%;
     margin: 18px 0;
+    width: 40%;
 }
 
 .search-input {
@@ -101,10 +111,10 @@
     .search-input {
         padding: 5px;
     }
-    .logo{
-        padding: 0 10px;
+    .logo {
+        margin: auto 5px;
     }
-    .search-container{
+    .search-container {
         width: 100%;
     }
 }

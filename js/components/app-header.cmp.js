@@ -3,7 +3,7 @@ import { eventBus } from '../services/eventbus-service.js';
 export default {
     template: `
     <header class="header">
-        <h1 class="logo">AppSus</h1>
+        <h1 class="logo" @click="goHome">AppSus</h1>
         <div class="search-container">
             <input @input="search" class="search-input" type="text" placeholder="Search...">
             <select @change="filter" class="filter-select">
@@ -41,6 +41,9 @@ export default {
         },
         filter(e){
             eventBus.$emit('filter', e.target.value);
+        },
+        goHome(){
+            this.$router.history.current.path === '/' ?  this.$router.push : this.$router.push('/');
         }
     },
 }

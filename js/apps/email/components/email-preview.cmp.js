@@ -68,7 +68,7 @@ export default {
             this.showMoreOpts = !this.showMoreOpts;
         },
         toggleStar() {
-            this.mail.isStarred = !this.mail.isStarred;
+            eventBus.$emit('toggleStar', this.mail.id);
         },
         sendEmit(emit) {
             eventBus.$emit(emit, this.mail.id);
