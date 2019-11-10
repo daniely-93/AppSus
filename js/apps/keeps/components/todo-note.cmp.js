@@ -16,7 +16,6 @@ export default{
         }
     },
     created(){
-
         this.todos = this.info.split(',');
         var str = localStorage.getItem(this.info);
         if(!str){

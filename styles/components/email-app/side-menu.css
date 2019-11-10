@@ -10,7 +10,7 @@
     background-color: #0084aa;
 }
 
-.btn-compose:hover{
+.btn-compose:hover {
     background-color: #034469;
 }
 
@@ -24,6 +24,7 @@
     color: white;
     cursor: pointer;
     width: 100%;
+    display: flex;
     padding: 10px 20;
     transition: all .1s;
 }
@@ -34,4 +35,8 @@
 
 .active {
     border-left: 5px solid rgb(255, 255, 255);
+}
+
+.side-menu-title {
+    margin: 0 5px;
 }

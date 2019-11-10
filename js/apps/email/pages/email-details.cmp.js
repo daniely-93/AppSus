@@ -4,6 +4,7 @@ import { eventBus } from '../../../services/eventbus-service.js';
 export default {
     name: 'MailDetails',
     template: `
+    <transition name="slide-fade">
     <div v-if="mail" class="mail-list-container">
         <div class="mail-details bg-lightgray p15">
             <div class="mail-details-address">
@@ -17,12 +18,14 @@ export default {
             <p>{{mail.body}}</p>
         </div>
         <div class="action-buttons p15">
+            <button style="float: left" @click="$router.push('/mail')"><i class="fa fa-arrow-left"></i></button>
             <button @click="sendEmit('deleteMail')"><i class="fa fa-trash"></i></button>
             <button @click="reply('reply')"><i class="fa fa-reply"></i></button>
             <button @click="reply('forward')"><i class="fa fa-arrow-right"></i></button>
             <button v-if="mail.deletedFrom" @click="sendEmit('recoverMail')"><i class="fa fa-undo"></i></button>
         </div>
-    </div>`,
+    </div>
+    </transition>`,
     data() {
         return {
             mail: null

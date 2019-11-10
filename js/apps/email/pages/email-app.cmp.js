@@ -9,8 +9,10 @@ export default {
     template: `
     <div class="mail-container">
         <side-menu @clicked="changeDir" @toggleForm="toggleForm" :unread="unreadMails"></side-menu>
-        <router-view :mails="filteredMails.length ? filteredMails : mails"></router-view>
-        <email-compose v-if="showForm" @sendMail="sendMail" :mailTemplate="mailTemplate"></email-compose>
+        <router-view :mails="filteredMails.length ? filteredMails : mails" :dir="dir"></router-view>
+        <transition name="fade">
+            <email-compose v-if="showForm" @sendMail="sendMail" :mailTemplate="mailTemplate"></email-compose>
+        </transition>
     </div>
     `,
     data() {
@@ -28,9 +30,13 @@ export default {
         },
         changeDir(dir) {
             this.dir = dir;
-            this.loadMails();
-            if (this.$router.history.current.path === '/mail') this.$router.push;
-            else this.$router.push('/mail')
+            if(dir === 'starred'){
+                this.mails = this.starredMails;
+            }else{
+
+                this.loadMails();
+            }
+            this.$router.history.current.path === '/mail' ?  this.$router.push : this.$router.push('/mail');
         },
         toggleForm() {
             this.showForm = !this.showForm;
@@ -63,12 +69,12 @@ export default {
         this.loadMails();
         eventBus.$on('deleteMail', id => {
             mailService.deleteMail(this.dir, id).then(() => {
-                // do something
+                this.$router.history.current.path === '/mail' ?  this.$router.push : this.$router.push('/mail');
             })
         });
         eventBus.$on('recoverMail', id => {
             mailService.recoverMail(id).then(() => {
-                this.changeDir('deleted');
+                this.changeDir('trash');
             })
         });
         eventBus.$on('replyMail', mail => {
@@ -76,16 +82,9 @@ export default {
             if (this.showForm) setTimeout(() => this.toggleForm(), 100);
             this.toggleForm();
         });
-        eventBus.$on('toggleStar', id => {
-            mailService.toggleStar(id).then(() => {
-                // do something
-            })
-        });
         eventBus.$on('search', str => {
             this.filteredMails = this.search(str);
-            if (str && !this.filteredMails.length) {
-                this.filteredMails.push(null)
-            }
+            if (str && !this.filteredMails.length) this.filteredMails.push(null)
         });
         eventBus.$on('filter', filterBy => {
             this.filteredMails = this.filter(filterBy);
@@ -99,8 +98,11 @@ export default {
     },
     computed: {
         unreadMails() {
-            if(!this.mails) return 0;
+            if (!this.mails) return 0;
             return this.filter('false').length;
+        },
+        starredMails(){
+            return this.mails.filter(mail => mail.isStarred)
         }
     },
     components: {
