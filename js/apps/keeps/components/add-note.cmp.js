@@ -1,4 +1,3 @@
-import noteService from '../services/notes-service.js';
 import { eventBus } from '../../../services/eventbus-service.js';
 
 export default {
@@ -29,8 +28,13 @@ export default {
             return this.type == noteType
         },
         addNote() {
-            if(!this.txt) return;
+            if (!this.txt) return;
             eventBus.$emit('addNote', this.type, this.txt);
         }
+    },
+    created() {
+        eventBus.$on('pinMail', mail => {
+            console.log('addNote', mail)
+        })
     }
 }

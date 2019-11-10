@@ -50,6 +50,9 @@ export default {
         sendEmit(emit){
             eventBus.$emit(emit, this.mail.id);
         },
+        pinMail(){
+            eventBus.$emit('pinMail', this.mail)
+        }
     },
     computed: {
         timeAsDate() {

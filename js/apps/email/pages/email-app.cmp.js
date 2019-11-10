@@ -103,6 +103,9 @@ export default {
                 type: 'success',
             }
             eventBus.$emit('show-msg', msg);
+        });
+        eventBus.$on('pin', mail => {
+
         })
     },
     computed: {
